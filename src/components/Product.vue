@@ -1,12 +1,12 @@
 <template>
   <div class="product">
-    <img :src="product.image" :alt="product.name" />
+    <img :src="productData.image" :alt="productData.name" />
 
-    <span class="description">{{ product.name }}</span>
+    <span class="description">{{ productData.name }}</span>
 
     <div class="button-container">
-      <span class="price">{{ product.price }}</span>
-      <Button @click="addCart(product)" />
+      <span class="price">{{ productData.price }}</span>
+      <Button @click="addCart(productData)" />
     </div>
   </div>
 </template>
@@ -22,11 +22,6 @@ export default {
     Button,
   },
   props: ["productData"],
-  data() {
-    return {
-      product: this.productData,
-    };
-  },
 
   methods: {
     ...mapActions(["addItemToCart"]),

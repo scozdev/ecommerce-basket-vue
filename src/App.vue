@@ -1,8 +1,4 @@
 <template>
-  <div class="nav">
-    <Header />
-  </div>
-
   <div class="container">
     <router-view />
   </div>
@@ -18,11 +14,9 @@
 </style>
 
 <script>
-import Header from "@/components/Header";
 export default {
   name: "Home",
   components: {
-    Header,
   },
 };
 </script>

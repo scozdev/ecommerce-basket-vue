@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Product.vue should match snapshot 1`] = `
+<div class="product"><img src="https://cdn.glitch.com/a28552e7-44e1-4bbd-b298-5745e70c2209%2Fsampuan.jpeg?v=1561027551321" alt="Şampuan"><span class="description">Şampuan</span>
+  <div class="button-container"><span class="price">13</span>
+    <button-stub></button-stub>
+  </div>
+</div>
+`;
