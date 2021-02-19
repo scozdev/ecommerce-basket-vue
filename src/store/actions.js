@@ -13,6 +13,7 @@ export default {
     });
   },
   addItemToCart({ commit }, item) {
+    console.log(99999);
     commit(constants.ADD_ITEM_TO_CART, item);
   },
   removeItemFromCart({ commit }, id) {

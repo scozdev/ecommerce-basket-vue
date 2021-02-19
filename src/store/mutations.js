@@ -6,6 +6,7 @@ export default {
   },
   [constants.ADD_ITEM_TO_CART](state, item) {
     const productInCart = state.cart.find((product) => product.id === item.id);
+    console.log(productInCart);
     if (!productInCart) {
       state.cart.push({ ...item, qty: 1 });
     } else {

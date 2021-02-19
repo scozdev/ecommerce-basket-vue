@@ -20,22 +20,17 @@ export default {
     ...mapState(["products"]),
   },
   created() {
-    
-    this.$store.dispatch("fetchAllProducts");
+    this.getAllProducts();
   },
   methods: {
     ...mapActions(["fetchAllProducts"]),
-    fetchAllProducts() {
+    getAllProducts() {
       this.isLoading = true;
       this.fetchAllProducts().then(() => {
         this.isLoading = false;
       });
     },
-    pageChanged() {
-      this.fetchAllProducts();
-      console.log(this.products);
-      // this.$router.push(`/ilanlar/sayfa/${this.query.page}`);
-    },
+  
   },
 };
 </script>

@@ -1,20 +1,19 @@
 <template>
-  <header class="header">Header
-        <router-link to="/">Home</router-link> |
+  <header class="header">
+    <router-link to="/">Home</router-link> |
     <router-link to="/Basket">Basket</router-link>
   </header>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style scoped> 
-
+<style scoped>
 .header {
-    background: rgba(0, 0, 0, 0.3);
-    padding: 5px;
+  background: var(--c-white);
+  padding: 5px;
+}
+.header a {
 }
 </style>

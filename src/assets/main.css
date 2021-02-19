@@ -1,13 +1,17 @@
 @import './reset.css';
+@import './veriables.css';
 
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
-body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    
-    font-size: 1.4em;
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 1.4em;
+  overflow-y: scroll;
+}
+button:focus {
+  outline: 0;
 }

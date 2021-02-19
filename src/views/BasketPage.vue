@@ -1,8 +1,18 @@
 <template>
   <div class="basket">
+    <header class="basket-header">MY CART ({{ cart.length }})</header>
+
     <BasketItem v-for="item in cart" :key="item.id" :cart-data="item" />
 
-    <Button val="PLACE ORDER" @click="removeCart()" />
+    <div class="basket-buttons">
+      <Button
+        val="CONTUNUE SHOPPING"
+        @click="continueShopping()"
+        size="full"
+        color="secondary"
+      />
+      <Button val="PLACE ORDER" @click="removeCart()" size="full" />
+    </div>
   </div>
 </template>
 
@@ -26,13 +36,27 @@ export default {
     removeCart() {
       this.emptyCart();
     },
+    continueShopping() {
+      this.$router.push(`/`);
+    }
   },
 };
 </script>
 
 <style scoped>
+.basket-header{
+  padding: 10px;
+}
 .basket {
   display: flex;
   flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.basket-buttons {
+  display: flex;
+  align-items: center;
+}
+.basket-buttons > * {
+  margin: 5px;
 }
 </style>

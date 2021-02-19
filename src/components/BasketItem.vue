@@ -3,9 +3,9 @@
     <section class="left">
       <img :src="cart.image" :alt="cart.name" />
       <div class="count">
-        <button>-</button>
-        <input type="number" />
-        <button>4</button>
+        <button @click="removeItem(cart.id)">-</button>
+        <input type="number" :value="cart.qty" />
+        <button @click="addItem(cart)">+</button>
       </div>
     </section>
 
@@ -14,7 +14,7 @@
         <p>{{ cart.name }}</p>
         <strong>{{ cart.price }}</strong>
       </div>
-      <button @click="removeItemFromCart(cart.id)">REMOVE</button>
+      <button @click="removeItem(cart.id)">REMOVE</button>
     </div>
   </div>
 </template>
@@ -31,30 +31,35 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["removeItemFromCart"]),
+    ...mapActions(["removeItemFromCart", "addItemToCart"]),
+    removeItem(id) {
+      this.removeItemFromCart(id);
+    },
+    addItem(cart) {
+      this.addItemToCart(cart);
+    },
   },
+  computed: {},
 };
 </script>
 
 <style scoped>
 .basketItem {
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  padding: 10px;
+}
+.basketItem:not(:last-child) {
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 img {
   width: 100%;
 }
 
 .left {
-  width: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 5px;
 }
 .left > * {
   padding: 5px;
@@ -62,12 +67,41 @@ img {
 .right {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+.right > div > * {
+  margin-bottom: 25px;
+}
+
+.right > button {
+  width: 100%;
+  margin-top: 30px;
+  border: 0;
+  background: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.right strong {
+  font-weight: 700;
 }
 .count {
   display: flex;
 }
+.count > *:not(:last-child) {
+  margin-right: 5px;
+}
 .count input {
+  text-align: center;
   width: 40px;
+}
+.count button {
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.count button:focus {
+  outline: 0;
 }
 </style>
