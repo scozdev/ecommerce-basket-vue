@@ -1,18 +1,39 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <div class="product-container">
+      <Product />
+      <Product />
+      <Product />
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import Product from "@/components/Product.vue";
 
 export default {
   name: "Home",
   components: {
-    HelloWorld
-  }
+    Product,
+  },
 };
 </script>
+
+<style scoped>
+.home {
+  display: flex;
+  flex-direction: column;
+ 
+}
+.product-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 500px) {
+  .product-container {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
