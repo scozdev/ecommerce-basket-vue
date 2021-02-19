@@ -1,19 +1,31 @@
 <template>
   <div class="basket">
-    <BasketItem />
-    <BasketItem />
-    <BasketItem />
+    <BasketItem v-for="item in cart" :key="item.id" :cart-data="item" />
+
+    <Button val="PLACE ORDER" @click="removeCart()" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import BasketItem from "@/components/BasketItem.vue";
+import Button from "@/components/Button.vue";
+import { mapActions, mapState } from "vuex";
 
 export default {
   name: "BasketPage",
   components: {
-    BasketItem
+    BasketItem,
+    Button,
+  },
+  computed: {
+    ...mapState(["cart"]),
+  },
+  methods: {
+    ...mapActions(["emptyCart"]),
+    removeCart() {
+      this.emptyCart();
+    },
   },
 };
 </script>
@@ -22,8 +34,5 @@ export default {
 .basket {
   display: flex;
   flex-direction: column;
-}
-.product-container {
-  
 }
 </style>

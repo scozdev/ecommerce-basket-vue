@@ -1,15 +1,12 @@
 <template>
   <div class="product">
-    <img
-      src="https://reimg-teknosa-cloud-prod.mncdn.com/mnresize/600/600/productimage/125077677/125077677_0_MC/47007810.jpg"
-      alt=""
-    />
+    <img :src="product.image" :alt="product.name" />
 
-    <span class="description">Ürün adi</span>
+    <span class="description">{{ product.name }}</span>
 
     <div class="button-container">
-      <span class="price">730</span>
-      <Button />
+      <span class="price">{{ product.price }}</span>
+      <Button @click="addCart(product)" />
     </div>
   </div>
 </template>
@@ -17,12 +14,27 @@
 <script>
 import Button from "@/components/Button.vue";
 
+import { mapActions } from "vuex";
+
 export default {
   name: "Product",
   components: {
     Button,
   },
-  props: {},
+  props: ["productData"],
+  data() {
+    return {
+      product: this.productData,
+    };
+  },
+
+  methods: {
+    ...mapActions(["addItemToCart"]),
+    addCart(product) {
+      this.addItemToCart(product);
+      this.$router.push(`/basket`);
+    },
+  },
 };
 </script>
 
@@ -39,8 +51,9 @@ export default {
 .product > *:not(:last-child) {
   margin-bottom: 15px;
 }
-.description,.price{
-    color: rgba(0, 0, 0, 0.5);
+.description,
+.price {
+  color: rgba(0, 0, 0, 0.5);
 }
 img {
   width: 80%;

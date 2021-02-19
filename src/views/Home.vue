@@ -1,9 +1,7 @@
 <template>
   <div class="home">
     <div class="product-container">
-      <Product />
-      <Product />
-      <Product />
+      <Product v-for="item in products" :key="item.id" :product-data="item" />
     </div>
   </div>
 </template>
@@ -11,11 +9,33 @@
 <script>
 // @ is an alias to /src
 import Product from "@/components/Product.vue";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "Home",
   components: {
     Product,
+  },
+  computed: {
+    ...mapState(["products"]),
+  },
+  created() {
+    
+    this.$store.dispatch("fetchAllProducts");
+  },
+  methods: {
+    ...mapActions(["fetchAllProducts"]),
+    fetchAllProducts() {
+      this.isLoading = true;
+      this.fetchAllProducts().then(() => {
+        this.isLoading = false;
+      });
+    },
+    pageChanged() {
+      this.fetchAllProducts();
+      console.log(this.products);
+      // this.$router.push(`/ilanlar/sayfa/${this.query.page}`);
+    },
   },
 };
 </script>
@@ -24,7 +44,6 @@ export default {
 .home {
   display: flex;
   flex-direction: column;
- 
 }
 .product-container {
   display: grid;

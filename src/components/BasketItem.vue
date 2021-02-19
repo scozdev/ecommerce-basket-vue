@@ -1,10 +1,7 @@
 <template>
   <div class="basketItem">
     <section class="left">
-      <img
-        src="https://reimg-teknosa-cloud-prod.mncdn.com/mnresize/600/600/productimage/125077677/125077677_0_MC/47007810.jpg"
-        alt=""
-      />
+      <img :src="cart.image" :alt="cart.name" />
       <div class="count">
         <button>-</button>
         <input type="number" />
@@ -14,20 +11,28 @@
 
     <div class="right">
       <div>
-        <p>slalsdajsd</p>
-        <strong>234</strong>
+        <p>{{ cart.name }}</p>
+        <strong>{{ cart.price }}</strong>
       </div>
-      <button>REMOVE</button>
+      <button @click="removeItemFromCart(cart.id)">REMOVE</button>
     </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-
+import { mapActions } from "vuex";
 export default {
   name: "BasketItem",
   components: {},
+  props: ["cartData"],
+  data() {
+    return {
+      cart: this.cartData,
+    };
+  },
+  methods: {
+    ...mapActions(["removeItemFromCart"]),
+  },
 };
 </script>
 
@@ -52,17 +57,17 @@ img {
   padding: 5px;
 }
 .left > * {
-    padding: 5px;
+  padding: 5px;
 }
 .right {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.count{
-    display: flex;
+.count {
+  display: flex;
 }
 .count input {
-    width: 40px;
+  width: 40px;
 }
 </style>

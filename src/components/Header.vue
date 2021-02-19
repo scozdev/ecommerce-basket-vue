@@ -1,7 +1,7 @@
 <template>
   <header class="header">Header
         <router-link to="/">Home</router-link> |
-    <router-link to="/Basket">About</router-link>
+    <router-link to="/Basket">Basket</router-link>
   </header>
 </template>
 
@@ -14,7 +14,7 @@ export default {
 <style scoped> 
 
 .header {
-    background: red;
+    background: rgba(0, 0, 0, 0.3);
     padding: 5px;
 }
 </style>
