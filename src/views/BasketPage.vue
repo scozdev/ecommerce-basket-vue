@@ -11,7 +11,11 @@
         size="full"
         color="secondary"
       />
-      <Button val="PLACE ORDER" @click="removeCart()" size="full" />
+      <Button val="PLACE ORDER" @click="placeOrder(cart)" size="full" />
+    </div>
+
+    <div class="place-order" v-if="placeOrderStatus">
+      {{ placeOrderStatus }}
     </div>
   </div>
 </template>
@@ -29,22 +33,26 @@ export default {
     Button,
   },
   computed: {
-    ...mapState(["cart"]),
+    ...mapState(["cart", "placeOrderStatus"]),
   },
   methods: {
-    ...mapActions(["emptyCart"]),
+    ...mapActions(["emptyCart", "submitOrder"]),
     removeCart() {
       this.emptyCart();
     },
     continueShopping() {
       this.$router.push(`/`);
-    }
+    },
+    placeOrder(cart) {
+      this.removeCart();
+      this.submitOrder(cart);
+    },
   },
 };
 </script>
 
 <style scoped>
-.basket-header{
+.basket-header {
   padding: 10px;
 }
 .basket {
@@ -58,5 +66,13 @@ export default {
 }
 .basket-buttons > * {
   margin: 5px;
+}
+.place-order {
+  height: 100px;
+  font-weight: 700;
+  font-size: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

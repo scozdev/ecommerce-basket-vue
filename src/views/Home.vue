@@ -2,6 +2,7 @@
   <div class="home">
     <div class="product-container">
       <Product v-for="item in products" :key="item.id" :product-data="item" />
+      <div v-if="isLoading">Yükleniyor</div>
     </div>
   </div>
 </template>
@@ -13,6 +14,11 @@ import { mapState, mapActions } from "vuex";
 
 export default {
   name: "Home",
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
   components: {
     Product,
   },
@@ -30,7 +36,6 @@ export default {
         this.isLoading = false;
       });
     },
-  
   },
 };
 </script>
@@ -38,6 +43,7 @@ export default {
 <style scoped>
 .home {
   display: flex;
+  align-items: center;
   flex-direction: column;
 }
 .product-container {

@@ -8,13 +8,21 @@ const http = axios.create({
 export default {
   fetchAllProducts({ commit }) {
     return http.get('/listing').then((res) => {
-      console.log(res.data);
-      commit(constants.SET_ALL_PRODUCTS, res.data);
+      commit(constants.GET_ALL_PRODUCTS, res.data);
     });
   },
   addItemToCart({ commit }, item) {
-    console.log(99999);
     commit(constants.ADD_ITEM_TO_CART, item);
+  },
+  submitOrder({ commit }, item) {
+    return http
+      .post('/order', item)
+      .then((res) => {
+        commit(constants.SUBMIT_ORDER, res.data);
+      })
+      .catch(() => {
+        commit(constants.SUBMIT_ORDER, { message: 'Stokta yok' });
+      });
   },
   removeItemFromCart({ commit }, id) {
     commit(constants.REMOVE_ITEM_FROM_CART, id);

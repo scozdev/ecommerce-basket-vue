@@ -5,8 +5,7 @@
 </template>
 
 <style scoped>
-.nav {
-}
+
 .container {
   max-width: 600px;
   width: 500px;

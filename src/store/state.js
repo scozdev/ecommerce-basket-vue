@@ -1,5 +1,5 @@
 export default {
-  isLoading: true,
   products: [],
-  cart: []
+  cart: [],
+  placeOrderStatus: null,
 };
